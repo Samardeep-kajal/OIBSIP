@@ -67,13 +67,12 @@ const sendVerificationEmail = async (email, unqiueString) => {
       html: `
         <p>Hello,</p>
         <p>Please click the following link to verify your account:</p>
-        <a href="http://localhost:3000/verify/${unqiueString}">Verify Account</a>
+        <a href="http://localhost:5005/verify/${unqiueString}">Verify Account</a>
       `,
     };
 
     await transporter.sendMail(mailOptions);
     console.log("Email Sent: %s", mailOptions.messageId);
-    res.json(mailOptions);
   } catch (error) {
     console.error("Error Sending verification mail: ", error);
   }
@@ -130,6 +129,7 @@ const verifyEmail = async (req, res) => {
 
     res.status(200).json({ message: "Email Verified Successfully" });
   } catch (error) {
+    console.error("Error verifying email:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -138,7 +138,8 @@ const verifyEmail = async (req, res) => {
 const sendForgotPasswordEmail = async (email, resetToken) => {
   try {
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+      host: "smtp.ethereal.email",
+      port: 587,
       auth: {
         user: process.env.NM_USER,
         pass: process.env.NM_PASS,
@@ -152,7 +153,7 @@ const sendForgotPasswordEmail = async (email, resetToken) => {
       html: `
         <p>Hello,</p>
         <p>Please click the following link to reset your password:</p>
-        <a href="http://localhost:3000/reset/${resetToken}">Reset Password</a>
+        <a href="http://localhost:5005/reset/${resetToken}">Reset Password</a>
       `,
     };
 
@@ -191,7 +192,6 @@ const resetPassword = async (req, res) => {
   try {
     const { token, newPassword } = req.body;
 
-    // Find the user by the reset token and check if it's valid
     const user = await User.findOne({
       resetPasswordToken: token,
       resetPasswordExpires: { $gt: Date.now() },
@@ -201,7 +201,6 @@ const resetPassword = async (req, res) => {
       return res.status(401).json({ message: "Invalid or expired token" });
     }
 
-    // Hash the new password and update it in the user document
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
     user.password = hashedPassword;
