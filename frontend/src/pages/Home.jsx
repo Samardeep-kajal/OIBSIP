@@ -13,10 +13,15 @@ import {
   Toolbar,
   Typography,
   Container,
+  IconButton,
+  MenuItem,
+  InputLabel,
+  Select,
+  FormControl,
 } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import pizzas from "../pizzas";
 
 const defaultTheme = createTheme();
 
@@ -58,8 +63,8 @@ const Home = () => {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+            {pizzas.map((pizza) => (
+              <Grid item key={pizza} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
                     height: "100%",
@@ -71,23 +76,92 @@ const Home = () => {
                   <CardMedia
                     component="div"
                     sx={{
-                      // 16:9
                       pt: "56.25%",
                     }}
-                    image="https://source.unsplash.com/random?wallpapers"
+                    image={pizza.image}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {pizza.name}
                     </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
+                    <Typography>{pizza.description}</Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    <FormControl
+                      fullWidth
+                      variant="outlined"
+                      sx={{ mt: 1, position: "relative", padding: "5px" }}
+                    >
+                      <InputLabel
+                        htmlFor="quantity-select"
+                        sx={{ position: "absolute" }}
+                      >
+                        Quantity
+                      </InputLabel>
+                      <Select
+                        labelId="quantity-select-label"
+                        id="quantity-select"
+                        label="Quantity"
+                        defaultValue={1}
+                        sx={{ height: "40px", padding: "5px" }}
+                      >
+                        {Array.from({ length: 10 }, (_, i) => (
+                          <MenuItem value={i + 1} key={i + 1}>
+                            {i + 1}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl
+                      fullWidth
+                      variant="outlined"
+                      sx={{
+                        mt: 1,
+                        position: "relative",
+                        padding: "5px",
+                      }}
+                    >
+                      <InputLabel
+                        htmlFor="size-select"
+                        sx={{ position: "absolute" }}
+                      >
+                        Size
+                      </InputLabel>
+                      <Select
+                        labelId="size-select-label"
+                        id="size-select"
+                        label="Size"
+                        defaultValue="Regular"
+                        sx={{
+                          height: "40px",
+                        }}
+                      >
+                        {pizza.sizes.map((size) => (
+                          <MenuItem key={size} value={size}>
+                            {size}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: "#777",
+                        mb: 1,
+                        "&:hover": {
+                          backgroundColor: "#FFC107",
+                        },
+                      }}
+                    >
+                      <AddShoppingCartIcon />
+                    </IconButton>
                   </CardActions>
                 </Card>
               </Grid>

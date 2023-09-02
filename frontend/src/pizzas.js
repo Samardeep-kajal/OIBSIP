@@ -1,7 +1,7 @@
 const pizzas = [
   {
     name: "Margherita",
-    size: ["Regular", "Medium", "Large"],
+    sizes: ["Regular", "Medium", "Large"],
     prices: {
       Regular: 670,
       Medium: 899,
@@ -14,7 +14,7 @@ const pizzas = [
   },
   {
     name: "Pepperoni",
-    size: ["Regular", "Medium", "Large"],
+    sizes: ["Regular", "Medium", "Large"],
     prices: {
       Regular: 745,
       Medium: 989,
@@ -27,7 +27,7 @@ const pizzas = [
   },
   {
     name: "Hawaiian",
-    size: ["Regular", "Medium", "Large"],
+    sizes: ["Regular", "Medium", "Large"],
     prices: {
       Regular: 805,
       Medium: 1069,
@@ -40,7 +40,7 @@ const pizzas = [
   },
   {
     name: "Veggie Supreme",
-    size: ["Regular", "Medium", "Large"],
+    sizes: ["Regular", "Medium", "Large"],
     prices: {
       Regular: 899,
       Medium: 1189,
@@ -53,7 +53,7 @@ const pizzas = [
   },
   {
     name: "BBQ Chicken",
-    size: ["Regular", "Medium", "Large"],
+    sizes: ["Regular", "Medium", "Large"],
     prices: {
       Regular: 965,
       Medium: 1279,
@@ -66,7 +66,7 @@ const pizzas = [
   },
   {
     name: "Mushroom Lovers",
-    size: ["Regular", "Medium", "Large"],
+    sizes: ["Regular", "Medium", "Large"],
     prices: {
       Regular: 899,
       Medium: 1189,

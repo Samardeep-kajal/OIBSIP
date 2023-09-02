@@ -21,7 +21,7 @@ const MenuItems = styled("div")({
 
 const TopNav = () => {
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="static" sx={{ zIndex: 1000 }}>
       <Toolbar>
         <img
           src="https://i.ibb.co/qyPkYfV/favicon-ico.png"
