@@ -1,5 +1,6 @@
 import React from "react";
 import { AppBar, MenuItem, Toolbar, Typography, styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const StyledAppBar = styled(AppBar)({
   height: "8vh",
@@ -29,13 +30,19 @@ const TopNav = () => {
         <Typography variant="h6">Savvy Slice!</Typography>
         <MenuItems>
           <MenuItem>
-            <Typography textAlign="center">Home</Typography>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <Typography textAlign="center">Home</Typography>
+            </Link>
           </MenuItem>
           <MenuItem>
-            <Typography textAlign="center">Explore</Typography>
+            <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+              <Typography textAlign="center">Explore</Typography>
+            </Link>
           </MenuItem>
           <MenuItem>
-            <Typography textAlign="center">Contact Us</Typography>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <Typography textAlign="center">Contact Us</Typography>
+            </Link>
           </MenuItem>
         </MenuItems>
       </Toolbar>
