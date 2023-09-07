@@ -2,11 +2,13 @@ const pizzas = [
   {
     name: "Margherita",
     sizes: ["Regular", "Medium", "Large"],
-    prices: {
-      Regular: 670,
-      Medium: 899,
-      Large: 1120,
-    },
+    prices: [
+      {
+        Regular: 670,
+        Medium: 899,
+        Large: 1120,
+      },
+    ],
     category: "Vegetarian",
     image: "/media/Margherita.jpg",
     description:
