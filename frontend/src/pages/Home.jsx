@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   AppBar,
   Button,
@@ -26,6 +27,8 @@ import pizzas from "../pizzas";
 const defaultTheme = createTheme();
 
 const Home = () => {
+  const [varient, setVarient] = useState("Regular");
+  const [quantity, setQuantity] = useState(1);
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
@@ -77,9 +80,23 @@ const Home = () => {
                     component="div"
                     sx={{
                       pt: "56.25%",
+                      position: "relative",
                     }}
                     image={pizza.image}
-                  />
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        backgroundColor: "red",
+                        color: "white",
+                        padding: "4px 8px", // Adjust the padding as needed
+                      }}
+                    >
+                      ₹{pizza.prices[0][varient] * quantity}
+                    </div>
+                  </CardMedia>
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
                       {pizza.name}
@@ -112,7 +129,11 @@ const Home = () => {
                         sx={{ height: "40px", padding: "5px" }}
                       >
                         {Array.from({ length: 10 }, (_, i) => (
-                          <MenuItem value={i + 1} key={i + 1}>
+                          <MenuItem
+                            value={i + 1}
+                            key={i + 1}
+                            onChange={(e) => setQuantity(e.target.value)}
+                          >
                             {i + 1}
                           </MenuItem>
                         ))}
@@ -144,7 +165,11 @@ const Home = () => {
                         }}
                       >
                         {pizza.sizes.map((size) => (
-                          <MenuItem key={size} value={size}>
+                          <MenuItem
+                            key={size}
+                            value={size}
+                            onChange={(e) => setVarient(e.target.value)}
+                          >
                             {size}
                           </MenuItem>
                         ))}
