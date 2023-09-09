@@ -17,11 +17,13 @@ const pizzas = [
   {
     name: "Pepperoni",
     sizes: ["Regular", "Medium", "Large"],
-    prices: {
-      Regular: 745,
-      Medium: 989,
-      Large: 1240,
-    },
+    prices: [
+      {
+        Regular: 745,
+        Medium: 989,
+        Large: 1240,
+      },
+    ],
     category: "Non-Vegetarian",
     image: "/media/Pepperoni.jpg",
     description:
@@ -30,11 +32,13 @@ const pizzas = [
   {
     name: "Hawaiian",
     sizes: ["Regular", "Medium", "Large"],
-    prices: {
-      Regular: 805,
-      Medium: 1069,
-      Large: 1339,
-    },
+    prices: [
+      {
+        Regular: 805,
+        Medium: 1069,
+        Large: 1339,
+      },
+    ],
     category: "Non-Vegetarian",
     image: "/media/Hawaiian.jpg",
     description:
@@ -43,11 +47,13 @@ const pizzas = [
   {
     name: "Veggie Supreme",
     sizes: ["Regular", "Medium", "Large"],
-    prices: {
-      Regular: 899,
-      Medium: 1189,
-      Large: 1490,
-    },
+    prices: [
+      {
+        Regular: 899,
+        Medium: 1189,
+        Large: 1490,
+      },
+    ],
     category: "Vegetarian",
     image: "/media/VeggieSupreme.jpg",
     description:
@@ -56,11 +62,13 @@ const pizzas = [
   {
     name: "BBQ Chicken",
     sizes: ["Regular", "Medium", "Large"],
-    prices: {
-      Regular: 965,
-      Medium: 1279,
-      Large: 1599,
-    },
+    prices: [
+      {
+        Regular: 965,
+        Medium: 1279,
+        Large: 1599,
+      },
+    ],
     category: "Non-Vegetarian",
     image: "/media/BBQChicken.jpeg",
     description:
@@ -69,11 +77,13 @@ const pizzas = [
   {
     name: "Mushroom Lovers",
     sizes: ["Regular", "Medium", "Large"],
-    prices: {
-      Regular: 899,
-      Medium: 1189,
-      Large: 1490,
-    },
+    prices: [
+      {
+        Regular: 899,
+        Medium: 1189,
+        Large: 1490,
+      },
+    ],
     category: "Vegetarian",
     image: "/media/Mushroom.jpg",
     description:
