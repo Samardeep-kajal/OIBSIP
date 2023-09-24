@@ -12,11 +12,18 @@ import {
   IconButton,
 } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../actions/cartAction";
 
 const PizzaCard = ({ pizza }) => {
-  const [varient, setVarient] = useState("Regular");
+  const [variant, setvariant] = useState("Regular");
   const [quantity, setQuantity] = useState(1);
+  const [show, setShow] = useState(false);
 
+  const dispatch = useDispatch();
+  const addToCartHandler = () => {
+    dispatch(addToCart(pizza, quantity, variant));
+  };
   return (
     <Card
       sx={{
@@ -44,7 +51,7 @@ const PizzaCard = ({ pizza }) => {
             padding: "4px 8px",
           }}
         >
-          ₹ {pizza.prices[0][varient] * quantity}
+          ₹ {pizza.prices[0][variant] * quantity}
         </div>
       </CardMedia>
       <CardContent sx={{ flexGrow: 1 }}>
@@ -111,8 +118,8 @@ const PizzaCard = ({ pizza }) => {
             sx={{
               height: "40px",
             }}
-            value={varient}
-            onChange={(e) => setVarient(e.target.value)}
+            value={variant}
+            onChange={(e) => setvariant(e.target.value)}
           >
             {pizza.sizes.map((size) => (
               <MenuItem key={size} value={size}>
@@ -130,6 +137,7 @@ const PizzaCard = ({ pizza }) => {
               backgroundColor: "#FFC107",
             },
           }}
+          onClick={addToCartHandler}
         >
           <AddShoppingCartIcon />
         </IconButton>

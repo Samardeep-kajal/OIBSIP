@@ -1,9 +1,11 @@
 import React from "react";
 import { AppBar, MenuItem, Toolbar, Typography, styled } from "@mui/material";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const StyledAppBar = styled(AppBar)({
-  height: "8vh",
+  height: "60px",
   color: "darkslategray",
   backgroundColor: "#FFC107",
   position: "fixed",
@@ -20,6 +22,8 @@ const MenuItems = styled("div")({
 });
 
 const TopNav = () => {
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.cartReducer);
   return (
     <StyledAppBar position="static" sx={{ zIndex: 1000 }}>
       <Toolbar>
@@ -42,6 +46,29 @@ const TopNav = () => {
           <MenuItem>
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
               <Typography textAlign="center">Contact Us</Typography>
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                verticalAlign: "middle",
+              }}
+            >
+              <ShoppingCartCheckoutIcon
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  marginTop: "5px",
+                }}
+              />
+              <span style={{ marginBottom: "5px", color: "green" }}>
+                {cartState.cartItems.length > 0
+                  ? cartState.cartItems.length
+                  : null}
+              </span>
             </Link>
           </MenuItem>
         </MenuItems>
