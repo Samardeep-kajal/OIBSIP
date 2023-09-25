@@ -13,15 +13,15 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../actions/cartAction";
+import { addToCart, deleteFromCart } from "../actions/cartAction";
 
-const Cart = ({ removeFromCart }) => {
+const Cart = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
   const calculateTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + item.prices[0][item.variant] * item.quantity,
       0
     );
   };
@@ -39,7 +39,8 @@ const Cart = ({ removeFromCart }) => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Product</TableCell>
+                  <TableCell>Pizza</TableCell>
+                  <TableCell></TableCell>
                   <TableCell>Quantity</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Remove</TableCell>
@@ -48,7 +49,12 @@ const Cart = ({ removeFromCart }) => {
               <TableBody>
                 {cartItems.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell>{item.name}</TableCell>
+                    <TableCell>
+                      {item.name} [{item.variant}]
+                    </TableCell>
+                    <TableCell>
+                      <img src={item.image} alt={item.name} width="100" />
+                    </TableCell>
                     <TableCell>
                       <Button
                         onClick={() =>
@@ -67,13 +73,16 @@ const Cart = ({ removeFromCart }) => {
                             addToCart(item, item.quantity + 1, item.variant)
                           )
                         }
+                        disabled={item.quantity === 10}
                       >
                         +
                       </Button>
                     </TableCell>
-                    <TableCell>₹{item.price * item.quantity}</TableCell>
                     <TableCell>
-                      <Button onClick={() => removeFromCart(item.id)}>
+                      ₹{item.quantity * item.prices[0][item.variant]}
+                    </TableCell>
+                    <TableCell>
+                      <Button onClick={() => dispatch(deleteFromCart(item))}>
                         Remove
                       </Button>
                     </TableCell>
