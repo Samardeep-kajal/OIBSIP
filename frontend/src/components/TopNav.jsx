@@ -50,7 +50,7 @@ const TopNav = () => {
           </MenuItem>
           <MenuItem>
             <Link
-              to="/"
+              to="/cart"
               style={{
                 textDecoration: "none",
                 color: "black",
