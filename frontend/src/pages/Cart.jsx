@@ -12,9 +12,11 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../actions/cartAction";
 
-const Cart = ({ removeFromCart, updateQuantity }) => {
+const Cart = ({ removeFromCart }) => {
+  const dispatch = useDispatch();
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
   const calculateTotal = () => {
@@ -50,7 +52,9 @@ const Cart = ({ removeFromCart, updateQuantity }) => {
                     <TableCell>
                       <Button
                         onClick={() =>
-                          updateQuantity(item.id, item.quantity - 1)
+                          dispatch(
+                            addToCart(item, item.quantity - 1, item.variant)
+                          )
                         }
                         disabled={item.quantity === 1}
                       >
@@ -59,7 +63,9 @@ const Cart = ({ removeFromCart, updateQuantity }) => {
                       {item.quantity}
                       <Button
                         onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
+                          dispatch(
+                            addToCart(item, item.quantity + 1, item.variant)
+                          )
                         }
                       >
                         +
