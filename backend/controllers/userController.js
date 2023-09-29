@@ -25,8 +25,8 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const uniqueString = randString();
-    const isVerified = false;
+    // const uniqueString = randString();
+    // const isVerified = false;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -35,8 +35,8 @@ const registerUser = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      isVerified,
-      uniqueString,
+      // isVerified,
+      // uniqueString,
     });
 
     await newUser.save();
