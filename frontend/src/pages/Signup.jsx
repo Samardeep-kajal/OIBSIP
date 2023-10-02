@@ -13,31 +13,27 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { registerUser } from "../actions/userAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const defaultTheme = createTheme();
 
 const Signup = () => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const registerHandler = () => {
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match!");
-    } else {
-      const user = { name, email, password, confirmPassword };
-      console.log(user);
-    }
-  };
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+    } else {
+      const user = { username, email, password };
+      dispatch(registerUser(user));
+    }
   };
   return (
     <ThemeProvider theme={defaultTheme} sx={{ overflow: "hidden" }}>
@@ -94,8 +90,8 @@ const Signup = () => {
                     fullWidth
                     id="Name"
                     label="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     autoFocus
                   />
                 </Grid>
@@ -131,7 +127,7 @@ const Signup = () => {
                     name="confirm password"
                     label="Confirm Password"
                     type="password"
-                    id="password"
+                    id="confirm-password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     autoComplete="new-password"
@@ -149,7 +145,7 @@ const Signup = () => {
                     bgcolor: "#FFC107",
                   },
                 }}
-                onClick={registerHandler}
+                onClick={handleSubmit}
               >
                 Sign Up
               </Button>
