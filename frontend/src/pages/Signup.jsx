@@ -33,6 +33,7 @@ const Signup = () => {
     } else {
       const user = { username, email, password };
       dispatch(registerUser(user));
+      toast.success("You've registered Successfully!");
     }
   };
   return (
