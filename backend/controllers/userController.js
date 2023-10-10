@@ -92,8 +92,8 @@ app.get("/verify/:uniqueString", async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
+
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -102,12 +102,20 @@ const loginUser = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
-    const token = jwt.sign({ userId: user._id }, "your-secret-key");
-
-    res.status(200).json({ token });
+    const currentUser = {
+      username: user.username,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      _id: user._id,
+      token: token,
+    };
+    res.status(200).send(currentUser);
   } catch (error) {
-    console.error("Login Error", error);
+    res.status(404).json({
+      message: "Something went wrong",
+    });
   }
 };
 

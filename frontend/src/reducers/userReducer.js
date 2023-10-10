@@ -23,7 +23,7 @@ export const registerUserReducer = (state = {}, action) => {
 
 export const loginUserReducer = (state = {}, action) => {
   switch (action.type) {
-    case "USER_REGISTER_REQUEST":
+    case "USER_LOGIN_REQUEST":
       return {
         loading: true,
       };

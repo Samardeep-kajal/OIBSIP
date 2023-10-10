@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -11,17 +11,22 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loginUser } from "../actions/userAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const defaultTheme = createTheme();
 
 const Landing = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, []);
+
+  const loginHandler = () => {
+    const user = { email, password };
+    dispatch(loginUser(user));
   };
   return (
     <ThemeProvider theme={defaultTheme} sx={{ overflow: "hidden" }}>
@@ -68,12 +73,7 @@ const Landing = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -81,6 +81,8 @@ const Landing = () => {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 autoFocus
               />
@@ -92,12 +94,14 @@ const Landing = () => {
                 label="Password"
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
               />
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
+                onClick={loginHandler}
                 sx={{
                   mt: 3,
                   mb: 2,
@@ -110,11 +114,11 @@ const Landing = () => {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
