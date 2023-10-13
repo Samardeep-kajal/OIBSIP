@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, deleteFromCart } from "../actions/cartAction";
+import Checkout from "../components/Checkout";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -99,9 +100,7 @@ const Cart = () => {
               Continue Shopping
             </Button>
           </Link>
-          <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-            Checkout
-          </Button>
+          <Checkout subtotal={calculateTotal()} />
         </>
       )}
     </Container>
