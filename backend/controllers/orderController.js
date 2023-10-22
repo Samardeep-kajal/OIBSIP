@@ -3,6 +3,8 @@ const { v4: uuidv4 } = require("uuid");
 const dotenv = require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
+const Order = require("../models/orderModel");
+
 const placeOrder = async (req, res) => {
   const { token, subtotal, currentUser, cartItems } = req.body;
   try {
@@ -36,6 +38,21 @@ const placeOrder = async (req, res) => {
       res
         .status(200)
         .send({ message: "Payment Success", redirectUrl: confirm_url });
+      const newOrder = new Order({
+        name: currentUser.username,
+        email: currentUser.email,
+        userid: currentUser._id,
+        orderItems: cartItems,
+        orderAmount: subtotal,
+        shippingAddress: {
+          street: token.card.address_line1,
+          city: token.card.address_city,
+          country: token.card.address_country,
+          pincode: token.card.address_zip,
+        },
+        transactionId: payment_id,
+      });
+      newOrder.save();
     } else {
       res.status(500).send({
         message: "Payment Failed",

@@ -6,14 +6,18 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   const cartItems = getState().cartReducer.cartItems;
 
   try {
-    const res = await axios.post("http://localhost:5005/api/order/placeorder", {
+    const res = await axios.post("/api/order/placeorder", {
       token,
       subtotal,
-      currentUser,
+      currentUser: {
+        username: currentUser.username,
+        email: currentUser.email,
+        _id: currentUser._id,
+      },
       cartItems,
     });
     if (res.data.message === "Payment Success") {
-      window.location.href = res.data.redirectUrl;
+      // window.location.href = res.data.redirectUrl;
       dispatch({ type: "PLACE_ORDER_SUCCESS" });
     } else {
       dispatch({ type: "PLACE_ORDER_FAIL" });
