@@ -22,7 +22,11 @@ const Landing = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (localStorage.getItem("currentUser")) {
+      window.location.href = "/explore";
+    }
+  }, []);
 
   const loginHandler = () => {
     const user = { email, password };

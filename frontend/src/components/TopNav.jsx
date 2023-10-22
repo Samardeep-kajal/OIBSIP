@@ -40,7 +40,10 @@ const TopNav = () => {
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/home" style={{ textDecoration: "none", color: "black" }}>
+            <Link
+              to="/explore"
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <Typography textAlign="center">Explore</Typography>
             </Link>
           </MenuItem>
