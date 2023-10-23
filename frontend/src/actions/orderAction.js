@@ -17,7 +17,7 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
       cartItems,
     });
     if (res.data.message === "Payment Success") {
-      // window.location.href = res.data.redirectUrl;
+      window.location.href = res.data.redirectUrl;
       dispatch({ type: "PLACE_ORDER_SUCCESS" });
     } else {
       dispatch({ type: "PLACE_ORDER_FAIL" });
