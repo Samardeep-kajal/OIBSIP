@@ -12,6 +12,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../actions/userAction";
 
 const StyledAppBar = styled(AppBar)({
   height: "50px",
@@ -131,7 +132,13 @@ const TopNav = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Orders</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    dispatch(logoutUser());
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </Menu>
             </div>
           ) : null}
