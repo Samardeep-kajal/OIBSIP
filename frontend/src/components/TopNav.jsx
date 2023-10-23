@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const StyledAppBar = styled(AppBar)({
-  height: "60px",
+  height: "50px",
   color: "darkslategray",
   backgroundColor: "#FFC107",
   position: "fixed",
@@ -24,20 +24,17 @@ const StyledAppBar = styled(AppBar)({
   fontWeight: "bold",
 });
 const MenuItems = styled("div")({
-  marginLeft: "25rem",
+  marginBottom: "5px",
+  marginRight: "auto",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   flex: 1,
 });
 
-const UserMenu = styled("div")({
-  marginLeft: "auto",
-});
-
 const TopNav = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = false;
+  let isLoggedIn = false;
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -47,16 +44,22 @@ const TopNav = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const user = useSelector((state) => state.loginUserReducer);
   const cartState = useSelector((state) => state.cartReducer);
+
+  if (user.currentUser) {
+    isLoggedIn = true;
+  }
   return (
     <StyledAppBar position="static" sx={{ zIndex: 1000 }}>
-      <Toolbar>
+      <Toolbar sx={{ justifyContent: "space-between" }}>
         <img
           src="https://i.ibb.co/qyPkYfV/favicon-ico.png"
-          style={{ maxWidth: "50px", marginRight: "10px", marginTop: "-5px" }}
+          style={{ maxWidth: "40px", marginTop: "-9px" }}
         />
-        <Typography variant="h6">Savvy Slice!</Typography>
+        <Typography variant="h6" sx={{ mb: 1, ml: 1 }}>
+          Savvy Slice!
+        </Typography>
         <MenuItems>
           <MenuItem>
             <Link to="/" style={{ textDecoration: "none", color: "black" }}>
@@ -99,36 +102,39 @@ const TopNav = () => {
               </span>
             </Link>
           </MenuItem>
-          <UserMenu>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Orders</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </Menu>
-          </UserMenu>
+          {isLoggedIn ? (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+                sx={{ mr: 2 }}
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Orders</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+              </Menu>
+            </div>
+          ) : null}
         </MenuItems>
       </Toolbar>
     </StyledAppBar>
