@@ -131,7 +131,14 @@ const TopNav = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Orders</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link
+                    to="/orders"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Orders
+                  </Link>
+                </MenuItem>
                 <MenuItem
                   onClick={() => {
                     dispatch(logoutUser());

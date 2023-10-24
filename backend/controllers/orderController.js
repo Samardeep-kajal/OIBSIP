@@ -66,4 +66,17 @@ const placeOrder = async (req, res) => {
   }
 };
 
-module.exports = { placeOrder };
+const getUserOrder = async (req, res) => {
+  const { userid } = req.body;
+  try {
+    const orders = await Order.find({ userid });
+    res.status(200).send(orders);
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong",
+      error: error.stack,
+    });
+  }
+};
+
+module.exports = { placeOrder, getUserOrder };

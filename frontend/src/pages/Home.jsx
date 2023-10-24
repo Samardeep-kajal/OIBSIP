@@ -37,7 +37,7 @@ const Home = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            minHeight: "100vh", // Ensures it covers the entire viewport
+            minHeight: "100vh",
           }}
         >
           <CircularProgress sx={{ color: "#FFC107" }} />
