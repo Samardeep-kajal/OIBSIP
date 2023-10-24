@@ -8,6 +8,7 @@ import Landing from "./pages/Landing";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/explore" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<OrderHistory />} />
           </Routes>
         </div>
       </BrowserRouter>
