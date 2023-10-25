@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerUser } from "../actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -25,6 +26,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +36,8 @@ const Signup = () => {
       const user = { username, email, password };
       dispatch(registerUser(user));
       toast.success("You've registered Successfully!");
+      setTimeout(toast.success("Please Sign-in now."));
+      navigate("/");
     }
   };
   return (
