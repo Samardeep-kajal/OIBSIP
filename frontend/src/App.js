@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import OrderHistory from "./pages/OrderHistory";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <div className="App">
           <TopNav />
           <Routes>
+            <Route path="/admin" element={<Admin />} />
             <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/explore" element={<Home />} />
