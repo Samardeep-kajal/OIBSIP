@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Paper, Button, CssBaseline, Typography } from "@mui/material";
+import { Switch, Route } from "react-router-dom";
+import UserList from "../../Admin/UserList";
+import PizzaList from "../../Admin/PizzaList";
+import AddNewPizza from "../../Admin/AddNewPizza";
+import OrderList from "../../Admin/OrderList";
 
 const Admin = () => {
   const [selectedButton, setSelectedButton] = useState(null);
@@ -90,6 +95,14 @@ const Admin = () => {
             )}
             {/* Add your data components here */}
           </Paper>
+        </div>
+        <div>
+          <Switch>
+            <Route path="/admin/userlist" Component={UserList} exact />
+            <Route path="/admin/pizzalist" Component={PizzaList} exact />
+            <Route path="/admin/addnewpizza" Component={AddNewPizza} exact />
+            <Route path="/admin/orderlist" Component={OrderList} exact />
+          </Switch>
         </div>
       </div>
     </div>
