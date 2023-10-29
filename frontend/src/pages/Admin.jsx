@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Paper, Button, CssBaseline, Typography } from "@mui/material";
-import { Routes, Route, useNavigate, BrowserRouter } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Button, CssBaseline } from "@mui/material";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import UserList from "../Admin/UserList";
 import PizzaList from "../Admin/PizzaList";
 import AddNewPizza from "../Admin/AddNewPizza";
@@ -8,6 +9,13 @@ import OrderList from "../Admin/OrderList";
 
 const Admin = () => {
   const navigate = useNavigate();
+  const userState = useSelector((state) => state.loginUserReducer);
+  const { currentUser } = userState;
+  useEffect(() => {
+    if (localStorage.getItem("currentUser") === null || !currentUser.isAdmin) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div>
       <div style={{ display: "flex", marginTop: "10vh" }}>
