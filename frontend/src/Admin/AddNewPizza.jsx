@@ -3,17 +3,16 @@ import {
   Paper,
   Typography,
   CssBaseline,
-  Avatar,
   Button,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Grid,
 } from "@mui/material";
 
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { addPizza } from "../actions/pizzaAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddNewPizza = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [regularPrice, setRegularPrice] = useState();
   const [largePrice, setLargePrice] = useState();
@@ -21,6 +20,9 @@ const AddNewPizza = () => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+
+  const addPizzaState = useSelector((state) => state.addPizzaReducer);
+  const { loading, error, success } = addPizzaState;
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -35,6 +37,7 @@ const AddNewPizza = () => {
         Large: largePrice,
       },
     };
+    dispatch(addPizza);
   };
 
   return (
