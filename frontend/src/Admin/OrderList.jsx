@@ -8,7 +8,7 @@ const OrderList = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        marginTop: "10vh",
+        marginLeft: "10vw",
       }}
     >
       <CssBaseline />

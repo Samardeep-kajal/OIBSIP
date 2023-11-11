@@ -9,3 +9,13 @@ export const getAllPizzas = () => async (dispatch) => {
     dispatch({ type: "GET_PIZZA_FAIL", payload: err });
   }
 };
+
+// export const addPizza = (pizza) => async (dispatch) => {
+//   dispatch({ type: "ADD_PIZZAS_REQUEST" });
+//   try {
+//     const response = await axios.get("/api/pizza/addpizza", { pizza });
+//     dispatch({ type: "ADD_PIZZAS_SUCCESS", payload: response.data });
+//   } catch (error) {
+//     dispatch({ type: "ADD_PIZZAS_FAIL", payload: error });
+//   }
+// };
