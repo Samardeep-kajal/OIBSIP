@@ -21,7 +21,7 @@ export const getAllPizzaReducer = (state = { pizzas: [] }, action) => {
   }
 };
 
-export const addPizzaReducer = (state = { pizzas: [] }, action) => {
+export const addPizzaReducer = (state = {}, action) => {
   switch (action.type) {
     case "ADD_PIZZAS_REQUEST":
       return {
@@ -30,6 +30,7 @@ export const addPizzaReducer = (state = { pizzas: [] }, action) => {
       };
     case "ADD_PIZZAS_SUCCESS":
       return {
+        pizzas: action.payload,
         success: true,
         loading: false,
       };

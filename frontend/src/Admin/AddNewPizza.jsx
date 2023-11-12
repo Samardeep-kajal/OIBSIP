@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Paper,
   Typography,
@@ -6,10 +6,12 @@ import {
   Button,
   TextField,
   Grid,
+  CircularProgress,
 } from "@mui/material";
 
 import { addPizza } from "../actions/pizzaAction";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const AddNewPizza = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,30 @@ const AddNewPizza = () => {
   const addPizzaState = useSelector((state) => state.addPizzaReducer);
   const { loading, error, success } = addPizzaState;
 
+  useEffect(() => {
+    if (success) {
+      toast.success("Added New Pizza to Menu!");
+    }
+    if (error) {
+      toast.error("Some error Occurred!");
+    }
+  }, [success, error]);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <CircularProgress sx={{ color: "#FFC107" }} />
+      </div>
+    );
+  }
+
   const submitForm = (e) => {
     e.preventDefault();
     const pizza = {
@@ -31,13 +57,15 @@ const AddNewPizza = () => {
       image,
       description,
       category,
-      prices: {
-        Regular: regularPrice,
-        Medium: mediumPrice,
-        Large: largePrice,
-      },
+      prices: [
+        {
+          Regular: regularPrice,
+          Medium: mediumPrice,
+          Large: largePrice,
+        },
+      ],
     };
-    dispatch(addPizza);
+    dispatch(addPizza(pizza));
   };
 
   return (
@@ -49,12 +77,11 @@ const AddNewPizza = () => {
         marginLeft: "10vw",
       }}
     >
-      <CssBaseline />
       <Paper
         elevation={3}
         sx={{
           padding: "16px",
-          width: "100%",
+          width: "90%",
           transition: "height 0.3s",
         }}
       >
@@ -164,6 +191,7 @@ const AddNewPizza = () => {
             </Button>
           </form>
         </div>
+        <CssBaseline />
       </Paper>
     </div>
   );

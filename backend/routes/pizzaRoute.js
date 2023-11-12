@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { getAllPizzas, addPizza } = require("../controllers/pizzaController");
+const { getAllPizzas, addPizzas } = require("../controllers/pizzaController");
 
 router.get("/getAllPizzas", getAllPizzas);
-router.post("/addpizza", addPizza);
+router.post("/addpizza", addPizzas);
 module.exports = router;
