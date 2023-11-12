@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Button, CssBaseline } from "@mui/material";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import UserList from "../Admin/UserList";
-import PizzaList from "../Admin/PizzaList";
-import AddNewPizza from "../Admin/AddNewPizza";
-import OrderList from "../Admin/OrderList";
+import UserList from "../components/Admin/UserList";
+import PizzaList from "../components/Admin/PizzaList";
+import AddNewPizza from "../components/Admin/AddNewPizza";
+import OrderList from "../components/Admin/OrderList";
 
 const Admin = () => {
   const navigate = useNavigate();

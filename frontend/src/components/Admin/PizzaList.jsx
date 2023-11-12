@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { getAllPizzas } from "../actions/pizzaAction";
+import { getAllPizzas } from "../../actions/pizzaAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const defaultTheme = createTheme();

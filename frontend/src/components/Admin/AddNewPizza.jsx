@@ -9,7 +9,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-import { addPizza } from "../actions/pizzaAction";
+import { addPizza } from "../../actions/pizzaAction";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
