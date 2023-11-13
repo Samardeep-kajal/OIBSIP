@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { getAllPizzas } from "../../actions/pizzaAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
@@ -94,7 +95,13 @@ const PizzaList = () => {
                         </TableCell>
                         <TableCell align="right">{pizza.category}</TableCell>
                         <TableCell align="right">
-                          <AiFillEdit /> &nbsp; <AiFillDelete />
+                          <Link to={`/admin/editpizza/${pizza._id}`}>
+                            <AiFillEdit />
+                          </Link>
+                          &nbsp;
+                          <Link>
+                            <AiFillDelete />
+                          </Link>
                         </TableCell>
                       </TableRow>
                     ))}

@@ -29,4 +29,14 @@ const addPizzas = async (req, res) => {
   }
 };
 
-module.exports = { getAllPizzas, addPizzas };
+const getPizzaById = async (req, res) => {
+  const pizzaId = req.body.pizzaId;
+  try {
+    const pizza = await Pizza.findOne({ _id: pizzaId });
+    res.status(201).send(pizza);
+  } catch (error) {
+    res.json({ message: error });
+  }
+};
+
+module.exports = { getAllPizzas, addPizzas, getPizzaById };

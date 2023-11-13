@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import OrderHistory from "./pages/OrderHistory";
 import Admin from "./pages/Admin";
+import EditPizza from "./components/Admin/EditPizza";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <TopNav />
           <Routes>
             <Route path="/admin/*" element={<Admin />} />
+            <Route path="/admin/editpizza/:pizzaId" element={<EditPizza />} />
             <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/explore" element={<Home />} />
