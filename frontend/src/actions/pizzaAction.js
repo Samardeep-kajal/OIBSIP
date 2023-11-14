@@ -26,8 +26,20 @@ export const getPizzaById = (pizzaId) => async (dispatch) => {
   try {
     const response = await axios.post("/api/pizza/getpizzabyid", { pizzaId });
     dispatch({ type: "GET_PIZZA_BYID_SUCCESS", payload: response.data });
-    console.log(response);
   } catch (error) {
     dispatch({ type: "GET_PIZZA_BYID_FAIL", payload: error });
+  }
+};
+
+export const updatePizza = (updatedPizza) => async (dispatch) => {
+  dispatch({ type: "UDPATE_PIZZA_REQUEST" });
+  try {
+    const response = await axios.post("/api/pizza/updatepizza", {
+      updatedPizza,
+    });
+    dispatch({ type: "UDPATE_PIZZA_SUCCESS", payload: response.data });
+    console.log(response);
+  } catch (error) {
+    dispatch({ type: "UDPATE_PIZZA_FAIL", payload: error });
   }
 };

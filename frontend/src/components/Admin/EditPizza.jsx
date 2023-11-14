@@ -9,7 +9,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getPizzaById } from "../../actions/pizzaAction";
+import { getPizzaById, updatePizza } from "../../actions/pizzaAction";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -55,6 +55,7 @@ const EditPizza = () => {
   const submitForm = (e) => {
     e.preventDefault();
     const pizza = {
+      _id: params.pizzaId,
       name,
       image,
       description,
@@ -67,6 +68,7 @@ const EditPizza = () => {
         },
       ],
     };
+    dispatch(updatePizza(pizza));
   };
 
   return (
