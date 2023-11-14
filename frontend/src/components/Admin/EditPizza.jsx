@@ -76,7 +76,6 @@ const EditPizza = () => {
         flexDirection: "column",
         alignItems: "flex-start",
         marginLeft: "10vw",
-        marginTop: "10vh",
       }}
     >
       <Paper
@@ -189,7 +188,7 @@ const EditPizza = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Save Changes
+              Update Pizza
             </Button>
           </form>
         </div>

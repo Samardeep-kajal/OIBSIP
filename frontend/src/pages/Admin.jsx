@@ -6,6 +6,7 @@ import UserList from "../components/Admin/UserList";
 import PizzaList from "../components/Admin/PizzaList";
 import AddNewPizza from "../components/Admin/AddNewPizza";
 import OrderList from "../components/Admin/OrderList";
+import EditPizza from "../components/Admin/EditPizza";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const Admin = () => {
         <div>
           <Routes>
             <Route path="/" element={<UserList />} exact />
+            <Route path="/editpizza/:pizzaId" element={<EditPizza />} />
             <Route path="/userlist" element={<UserList />} exact />
             <Route path="/pizzalist" element={<PizzaList />} exact />
             <Route path="/addnewpizza" element={<AddNewPizza />} exact />
