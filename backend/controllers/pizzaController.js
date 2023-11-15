@@ -39,4 +39,20 @@ const getPizzaById = async (req, res) => {
   }
 };
 
-module.exports = { getAllPizzas, addPizzas, getPizzaById };
+const updatePizza = async (req, res) => {
+  const updatedPizza = req.body.updatedPizza;
+  try {
+    const pizza = await Pizza.findOne({ _id: updatedPizza._id });
+    pizza.name = updatedPizza.name;
+    pizza.image = updatedPizza.image;
+    pizza.category = updatedPizza.category;
+    pizza.prices = updatedPizza.prices;
+    pizza.description = updatedPizza.description;
+    await pizza.save();
+    res.status(201).send("Pizza Updated");
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+};
+
+module.exports = { getAllPizzas, addPizzas, getPizzaById, updatePizza };

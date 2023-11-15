@@ -23,18 +23,20 @@ const EditPizza = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-  // useEffect(() => {
-  //   if (success) {
-  //     toast.success("Added New Pizza to Menu!");
-  //   }
-  //   if (error) {
-  //     toast.error("Some error Occurred!");
-  //   }
-  // }, [success, error]);
-
   const params = useParams();
   const getPizzaState = useSelector((state) => state.getPizzaByIdReducer);
   const { loading, error, pizza } = getPizzaState;
+
+  const updatePizzaState = useSelector((state) => state.updatePizzaReducer);
+  const { updatesuccess, updateloading, updateerror } = updatePizzaState;
+  useEffect(() => {
+    if (updatesuccess) {
+      toast.success("Pizza Updated!");
+    }
+    if (updateerror) {
+      toast.error("Some error Occurred!");
+    }
+  }, [updatesuccess, updateerror]);
 
   useEffect(() => {
     dispatch(getPizzaById(params.pizzaId));
@@ -52,9 +54,24 @@ const EditPizza = () => {
     }
   }, [pizza, params.pizzaId]);
 
+  if (updateloading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <CircularProgress sx={{ color: "#FFC107" }} />
+      </div>
+    );
+  }
+
   const submitForm = (e) => {
     e.preventDefault();
-    const pizza = {
+    const updatedPizza = {
       _id: params.pizzaId,
       name,
       image,
@@ -68,7 +85,7 @@ const EditPizza = () => {
         },
       ],
     };
-    dispatch(updatePizza(pizza));
+    dispatch(updatePizza(updatedPizza));
   };
 
   return (

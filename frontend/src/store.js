@@ -4,6 +4,7 @@ import {
   addPizzaReducer,
   getAllPizzaReducer,
   getPizzaByIdReducer,
+  updatePizzaReducer,
 } from "./reducers/pizzaReducer";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { cartReducer } from "./reducers/cartReducer";
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   getUserOrdersReducer: getUserOrdersReducer,
   addPizzaReducer: addPizzaReducer,
   getPizzaByIdReducer: getPizzaByIdReducer,
+  updatePizzaReducer: updatePizzaReducer,
 });
 
 const cartItems = localStorage.getItem("cartItems")

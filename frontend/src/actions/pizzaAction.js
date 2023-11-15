@@ -38,7 +38,7 @@ export const updatePizza = (updatedPizza) => async (dispatch) => {
       updatedPizza,
     });
     dispatch({ type: "UDPATE_PIZZA_SUCCESS", payload: response.data });
-    console.log(response);
+    window.location.href = "/admin/pizzalist";
   } catch (error) {
     dispatch({ type: "UDPATE_PIZZA_FAIL", payload: error });
   }
