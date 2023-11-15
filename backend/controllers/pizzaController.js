@@ -55,4 +55,20 @@ const updatePizza = async (req, res) => {
   }
 };
 
-module.exports = { getAllPizzas, addPizzas, getPizzaById, updatePizza };
+const deletePizza = async (req, res) => {
+  const pizzaId = req.body.pizzaId;
+  try {
+    await Pizza.findOneAndDelete({ _id: pizzaId });
+    res.status(200).send("Pizza Deleted");
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+};
+
+module.exports = {
+  getAllPizzas,
+  addPizzas,
+  getPizzaById,
+  updatePizza,
+  deletePizza,
+};

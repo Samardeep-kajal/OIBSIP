@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { getAllPizzas } from "../../actions/pizzaAction";
+import { deletePizza, getAllPizzas } from "../../actions/pizzaAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -96,11 +96,16 @@ const PizzaList = () => {
                         <TableCell align="right">{pizza.category}</TableCell>
                         <TableCell align="right">
                           <Link to={`/admin/editpizza/${pizza._id}`}>
-                            <AiFillEdit />
+                            <AiFillEdit style={{ color: "	#FFC000" }} />
                           </Link>
                           &nbsp;
                           <Link>
-                            <AiFillDelete />
+                            <AiFillDelete
+                              style={{ color: "red" }}
+                              onClick={() => {
+                                dispatch(deletePizza(pizza._id));
+                              }}
+                            />
                           </Link>
                         </TableCell>
                       </TableRow>

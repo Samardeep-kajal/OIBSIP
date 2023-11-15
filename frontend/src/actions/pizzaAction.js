@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: "GET_PIZZA_REQUEST" });
@@ -41,5 +42,15 @@ export const updatePizza = (updatedPizza) => async (dispatch) => {
     window.location.href = "/admin/pizzalist";
   } catch (error) {
     dispatch({ type: "UDPATE_PIZZA_FAIL", payload: error });
+  }
+};
+
+export const deletePizza = (pizzaId) => async (dispatch) => {
+  try {
+    const res = await axios.post("/api/pizza/deletepizza", { pizzaId });
+    toast.success("Pizza Deleted!");
+    window.location.href = "/admin/pizzalist";
+  } catch (error) {
+    toast.error("Oops! Some error occured.");
   }
 };
