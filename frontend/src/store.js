@@ -8,7 +8,11 @@ import {
 } from "./reducers/pizzaReducer";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { cartReducer } from "./reducers/cartReducer";
-import { registerUserReducer, loginUserReducer } from "./reducers/userReducer";
+import {
+  registerUserReducer,
+  loginUserReducer,
+  getAllUsersReducer,
+} from "./reducers/userReducer";
 import {
   placeOrderReducer,
   getUserOrdersReducer,
@@ -26,6 +30,7 @@ const rootReducer = combineReducers({
   getPizzaByIdReducer: getPizzaByIdReducer,
   updatePizzaReducer: updatePizzaReducer,
   getAllUserOrderReducer: getAllUserOrderReducer,
+  getAllUsersReducer: getAllUsersReducer,
 });
 
 const cartItems = localStorage.getItem("cartItems")
