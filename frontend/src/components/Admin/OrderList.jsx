@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Paper, Typography, CssBaseline } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { getAllOrders } from "../../actions/orderAction";
 
 const OrderList = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllOrders());
+  }, [dispatch]);
   return (
     <div
       style={{
