@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+
 export const registerUser = (user) => async (dispatch) => {
   dispatch({ type: "USER_REGISTER_REQUEST" });
   try {
@@ -33,5 +35,16 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: "GET_USERS_SUCCESS", payload: res.data });
   } catch (err) {
     dispatch({ type: "GET_USERS_FAIL", payload: err });
+  }
+};
+
+export const deleteUser = (userid) => async (dispatch) => {
+  try {
+    const res = await axios.post("/api/user/deleteuser", { userid });
+    toast.success("User Deleted!");
+    window.location.href = "/admin/userlist";
+    console.log(res);
+  } catch (error) {
+    toast.error("Oops! Some error occured.");
   }
 };
