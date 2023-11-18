@@ -76,11 +76,6 @@ const TopNav = () => {
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-              <Typography textAlign="center">Contact Us</Typography>
-            </Link>
-          </MenuItem>
-          <MenuItem>
             <Link
               to="/cart"
               style={{
@@ -139,6 +134,16 @@ const TopNav = () => {
                     Orders
                   </Link>
                 </MenuItem>
+                {user.currentUser.isAdmin ? (
+                  <MenuItem onClick={handleClose}>
+                    <Link
+                      to="/admin/"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Admin Mode
+                    </Link>
+                  </MenuItem>
+                ) : null}
                 <MenuItem
                   onClick={() => {
                     dispatch(logoutUser());

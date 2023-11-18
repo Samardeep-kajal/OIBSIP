@@ -16,7 +16,6 @@ export const addPizza = (pizza) => async (dispatch) => {
   try {
     const response = await axios.post("/api/pizza/addpizza", pizza);
     dispatch({ type: "ADD_PIZZAS_SUCCESS", payload: response.data });
-    console.log(response);
   } catch (error) {
     dispatch({ type: "ADD_PIZZAS_FAIL", payload: error });
   }

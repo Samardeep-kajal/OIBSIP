@@ -18,8 +18,10 @@ export const loginUser = (user) => async (dispatch) => {
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
     localStorage.setItem("currentUser", JSON.stringify(response.data));
     window.location.href = "/explore";
+    toast.success("Login Successful!");
   } catch (error) {
     dispatch({ type: "USER_LOGIN_FAIL", payload: error });
+    toast.error("Invalid Credentials!");
   }
 };
 
@@ -43,7 +45,6 @@ export const deleteUser = (userid) => async (dispatch) => {
     const res = await axios.post("/api/user/deleteuser", { userid });
     toast.success("User Deleted!");
     window.location.href = "/admin/userlist";
-    console.log(res);
   } catch (error) {
     toast.error("Oops! Some error occured.");
   }

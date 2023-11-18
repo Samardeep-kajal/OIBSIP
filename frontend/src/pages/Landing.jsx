@@ -12,7 +12,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loginUser } from "../actions/userAction";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
@@ -28,14 +28,14 @@ const Landing = () => {
     if (localStorage.getItem("currentUser")) {
       navigate("/explore");
     }
-  }, []);
+  }, [navigate]);
 
   const loginHandler = () => {
     const user = { email, password };
     dispatch(loginUser(user));
   };
   return (
-    <ThemeProvider theme={defaultTheme} sx={{ overflow: "hidden" }}>
+    <ThemeProvider theme={defaultTheme} style={{ overflow: "hidden" }}>
       <CssBaseline />
       <style>
         {`
@@ -63,7 +63,7 @@ const Landing = () => {
             backgroundSize: "85% 105%",
           }}
         />
-        <Grid item xs={12} sm={8} md={5} square>
+        <Grid item xs={12} sm={8} md={5}>
           <Box
             sx={{
               my: 8,
