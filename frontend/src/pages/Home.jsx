@@ -6,17 +6,29 @@ import {
   Grid,
   CircularProgress,
 } from "@mui/material";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../actions/pizzaAction";
 import PizzaCard from "../components/PizzaCard";
+import { useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const pizzastate = useSelector((state) => state.getAllPizzaReducer);
   const { loading, pizzas, error } = pizzastate;
+
+  useEffect(() => {
+    if (!localStorage.getItem("currentUser")) {
+      navigate("/");
+      toast.error("Create an Account First!");
+    }
+  }, [navigate]);
+
   useEffect(() => {
     dispatch(getAllPizzas());
   }, [dispatch]);

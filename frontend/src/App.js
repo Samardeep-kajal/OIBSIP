@@ -10,7 +10,6 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import OrderHistory from "./pages/OrderHistory";
 import Admin from "./pages/Admin";
-import EditPizza from "./components/Admin/EditPizza";
 
 function App() {
   return (

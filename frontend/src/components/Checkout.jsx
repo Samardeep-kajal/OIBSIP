@@ -15,23 +15,23 @@ const Checkout = ({ subtotal }) => {
   const tokenHandler = (token) => {
     dispatch(placeOrder(token, subtotal));
   };
-  // if (loading) {
-  //   return (
-  //     <div
-  //       style={{
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         minHeight: "100vh", // Ensures it covers the entire viewport
-  //       }}
-  //     >
-  //       <CircularProgress sx={{ color: "#FFC107" }} />
-  //     </div>
-  //   );
-  // }
-  // if (error) {
-  //   return <h1 style={{ marginTop: "10vh" }}>Something went wrong</h1>;
-  // }
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh", // Ensures it covers the entire viewport
+        }}
+      >
+        <CircularProgress sx={{ color: "#FFC107" }} />
+      </div>
+    );
+  }
+  if (error) {
+    return <h1 style={{ marginTop: "10vh" }}>Something went wrong</h1>;
+  }
   return (
     <StripeCheckout
       amount={subtotal * 100}
