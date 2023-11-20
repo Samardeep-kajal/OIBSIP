@@ -81,7 +81,7 @@ const getUserOrder = async (req, res) => {
 
 const allUserOrder = async (req, res) => {
   try {
-    const orders = await Order.find({});
+    const orders = await Order.find({}).sort({ createdAt: -1 });
     res.status(200).send(orders);
   } catch (error) {
     res.status(500).json({

@@ -31,7 +31,7 @@ const OrderList = () => {
       hour: "2-digit",
       minute: "2-digit",
     };
-    return new Date(dateTimeString).toLocaleDateString("en-US", options);
+    return new Date(dateTimeString).toLocaleDateString("en-GB", options);
   };
 
   return (

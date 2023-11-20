@@ -9,7 +9,6 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../actions/pizzaAction";
-// import pizzas from "../pizzas";
 import PizzaCard from "../components/PizzaCard";
 
 const defaultTheme = createTheme();
@@ -57,9 +56,7 @@ const Home = () => {
           </Container>
         </main>
       )}
-      {/* Footer */}
       <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer"></Box>
-      {/* End footer */}
     </ThemeProvider>
   );
 };

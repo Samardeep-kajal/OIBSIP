@@ -14,7 +14,6 @@ const Checkout = ({ subtotal }) => {
   const dispatch = useDispatch();
   const tokenHandler = (token) => {
     dispatch(placeOrder(token, subtotal));
-    // console.log(token);
   };
   // if (loading) {
   //   return (
@@ -34,8 +33,6 @@ const Checkout = ({ subtotal }) => {
   //   return <h1 style={{ marginTop: "10vh" }}>Something went wrong</h1>;
   // }
   return (
-    // <ThemeProvider theme={defaultTheme}>
-    //   <CssBaseline />
     <StripeCheckout
       amount={subtotal * 100}
       shippingAddress
