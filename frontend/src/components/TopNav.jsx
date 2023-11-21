@@ -75,31 +75,31 @@ const TopNav = () => {
               <Typography textAlign="center">Explore</Typography>
             </Link>
           </MenuItem>
-          <MenuItem>
-            <Link
-              to="/cart"
-              style={{
-                textDecoration: "none",
-                color: "black",
-                verticalAlign: "middle",
-              }}
-            >
-              <ShoppingCartCheckoutIcon
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  marginTop: "5px",
-                }}
-              />
-              <span style={{ marginBottom: "5px", color: "green" }}>
-                {cartState.cartItems.length > 0
-                  ? cartState.cartItems.length
-                  : null}
-              </span>
-            </Link>
-          </MenuItem>
           {isLoggedIn ? (
             <div>
+              <MenuItem>
+                <Link
+                  to="/cart"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    verticalAlign: "middle",
+                  }}
+                >
+                  <ShoppingCartCheckoutIcon
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      marginTop: "5px",
+                    }}
+                  />
+                  <span style={{ marginBottom: "5px", color: "green" }}>
+                    {cartState.cartItems.length > 0
+                      ? cartState.cartItems.length
+                      : null}
+                  </span>
+                </Link>
+              </MenuItem>
               <IconButton
                 size="large"
                 aria-label="account of current user"
