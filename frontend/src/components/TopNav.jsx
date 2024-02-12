@@ -76,6 +76,7 @@ const TopNav = () => {
             </Link>
           </MenuItem>
           {isLoggedIn ? (
+            //Added Flexbox
             <div style={{ display: "flex", alignItems: "center" }}>
               <MenuItem>
                 <Link
