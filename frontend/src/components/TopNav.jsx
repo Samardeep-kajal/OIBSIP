@@ -76,7 +76,7 @@ const TopNav = () => {
             </Link>
           </MenuItem>
           {isLoggedIn ? (
-            <div>
+            <div style={{ display: "flex", alignItems: "center" }}>
               <MenuItem>
                 <Link
                   to="/cart"
